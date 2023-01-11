@@ -211,6 +211,30 @@
           <label for="comment" class="form-label">ひとこと</label>
           <textarea rows="2" class="form-control" id="comment" placeholder="" name="comment"></textarea>
         </div>
+        <details class="mb-3">
+          <summary>詳細設定</summary>
+          <div class="row mb-3">
+            <div class="col">
+              <label class="form-label">カスタムフォント</label>
+              <p class="text-muted fs-6">フォントを置き換えます フォールバックフォントは自動指定されません</p>
+              <input type="text" class="form-control" id="font" name="font" placeholder="&quot;Noto Sans JP&quot;, Arial, sans-serif">
+            </div>
+            <div class="col">
+              <div class="mb-2">
+                <label class="form-label">テキストの色</label>
+                <input type="color" class="form-control form-control-color" id="text-color" name="text-color" value="#000000">
+              </div>
+              <div>
+                <label class="form-label">円の色</label>
+                <input type="color" class="form-control form-control-color" id="circle-color" name="circle-color" value="#000000">
+              </div>
+            </div>
+            <div class="col">
+              <label class="form-label">円の幅</label>
+              <input type="number" class="form-control" id="circle-width" name="circle-width" value="2">
+            </div>
+          </div>
+        </details>
         <button type="submit" class="btn btn-primary mb-2" id="generate">作成</button>
         <p id="status" class="text-muted mb-2"></p>
         <canvas id="canvas" width="1800" height="1200" style="display:none;visibility: hidden;"></canvas>

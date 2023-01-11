@@ -37,7 +37,7 @@ document.getElementById("form").addEventListener("submit", (e) => {
     let fontSize = firstFontSize + 1;
     do {
       fontSize--;
-      ctx.font = `${fontSize}px "Noto Sans JP", Arial, sans-serif`;
+      ctx.font = `${fontSize}px ${data["font"] || '"Noto Sans JP", Arial, sans-serif'}`;
     } while (ctx.measureText(text).width > maxWidth);
     if (text.includes("\n")) {
       const [first, second] = text.split("\n");
@@ -60,15 +60,15 @@ document.getElementById("form").addEventListener("submit", (e) => {
   const isE = (data) => data === ""
 
   ctx.beginPath();
-  ctx.fillStyle = "black";
+  ctx.fillStyle = data["text-color"] || "black";
 
   fillText(data.nickname, 72, 330, 400);
   fillText(data.crew || "なし", 500, 330, 400);
   fillText((isE(data.classmax) ? "(最大)" : "") + (data.classtype + data.classnum), 68, 463, 400);
   fillText(data.crit + "%", 500, 463, 400);
 
-  ctx.strokeStyle = "black";
-  ctx.lineWidth = 2;
+  ctx.strokeStyle = data["circle-color"] || "black";
+  ctx.lineWidth = data["circle-width"] || 2;
 
   isE(data["f-pvp"]) && arc(202, 620, 50);
   isE(data["f-pve"]) && arc(372, 620, 50);
