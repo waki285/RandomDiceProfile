@@ -252,7 +252,10 @@
             </div>
           </div>
         </details>
-        <button type="submit" class="btn btn-primary mb-2" id="generate">作成</button>
+        <div class="d-flex mb-2">
+          <button type="submit" class="btn btn-primary" id="generate">作成</button>
+          <button type="button" class="btn btn-outline-primary ms-2" id="download" disabled>ダウンロード</button>
+        </div>
         <p id="status" class="text-muted mb-2"></p>
         <canvas id="canvas" width="1800" height="1200" style="display:none;visibility: hidden;"></canvas>
         <img id="generated" class="mb-3">

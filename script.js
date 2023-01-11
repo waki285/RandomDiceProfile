@@ -5,6 +5,8 @@ const dice = [
   "充電", "スコープ" , "時間逆行", "転移", "時間", "銃", "重力操作"
 ]
 
+let current = 0;
+
 const favoritedice = document.getElementById("favoritedice");
 favoritedice.innerHTML = dice.map((d, i) => `<option value="${i}">${d}</option>`).join("");
 
@@ -27,6 +29,7 @@ document.getElementById("form").addEventListener("submit", (e) => {
     alert("デッキは2行までにしてください");
     return;
   }
+  current = 1;
   status.innerText = "描画中...";
   /** @type {HTMLCanvasElement} */
   const canvas = document.getElementById("canvas");
@@ -112,4 +115,15 @@ document.getElementById("form").addEventListener("submit", (e) => {
   generated.width = 600;
   generated.height = 400;
   status.innerText = "出力完了";
+  document.getElementById("download").disabled = false;
+  current = 2;
+});
+
+document.getElementById("download").addEventListener("click", (e) => {
+  if (current !== 2) return;
+  const a = document.createElement("a");
+  a.href = document.getElementById("generated").src;
+  a.download = "generated.png";
+  a.click();
+
 });
