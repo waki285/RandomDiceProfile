@@ -1,25 +1,37 @@
 <!DOCTYPE html>
 <html lang="ja">
 
-<head>
+<head prefix="og: http://ogp.me/ns#">
   <meta charset="utf-8" />
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>ランダムダイスプロフィール生成</title>
+  <meta name="keywords" content="ランダムダイス,RandomDice">
+  <meta name="description" content="ランダムダイスのプロフィール画像にテキストを埋め込むサイトです">
+  <meta property="og:title" content="ランダムダイスプロフィール生成">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rdprofile.suzuneu.com/">
+  <meta property="og:image" content="https://rdprofile.suzuneu.com/ogp.png">
+  <meta property="twitter:creator" content="@suzuneu_discord, @RandomDice_JP">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin
-    ><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
   <script defer src="script.js"></script>
 </head>
 
 <body>
+  <!-- admax -->
+  <script
+    type="text/javascript">(admaxads = window.admaxads || []).push({ admax_id: "41a1ea98153658b886cb5a35b567da31", type: "action" });</script>
+  <script type="text/javascript" charset="utf-8" src="https://adm.shinobi.jp/st/t.js" async></script>
+  <!-- admax -->
   <div id="root" class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
@@ -34,7 +46,8 @@
         <div class="row">
           <div class="mb-3 col">
             <label for="nickname" class="form-label">ニックネーム <span class="r">*</span></label>
-            <input type="text" class="form-control" id="nickname" name="nickname" placeholder="すずねーう" required maxlength="10">
+            <input type="text" class="form-control" id="nickname" name="nickname" placeholder="すずねーう" required
+              maxlength="10">
           </div>
           <div class="mb-3 col">
             <label for="crew" class="form-label">所属クルー</label>
@@ -62,7 +75,8 @@
           <div class="col">
             <label for="crit" class="form-label">クリティカルダメージ <span class="r">*</span></label>
             <div class="input-group">
-              <input type="number" class="form-control" id="crit" name="crit" required placeholder="1000" min="100" max="3000">
+              <input type="number" class="form-control" id="crit" name="crit" required placeholder="1000" min="100"
+                max="3000">
               <span class="input-group-text">%</span>
             </div>
           </div>
@@ -162,7 +176,7 @@
                 深夜
               </label>
             </div>
-            
+
           </div>
           <div class="col">
             <label>プレイスタイル</label>
@@ -190,7 +204,7 @@
                 無課金勢
               </label>
             </div>
-            
+
           </div>
         </div>
         <div class="mb-3">
@@ -217,16 +231,19 @@
             <div class="col">
               <label class="form-label">カスタムフォント</label>
               <p class="text-muted fs-6">フォントを置き換えます フォールバックフォントは自動指定されません</p>
-              <input type="text" class="form-control" id="font" name="font" placeholder="&quot;Noto Sans JP&quot;, Arial, sans-serif">
+              <input type="text" class="form-control" id="font" name="font"
+                placeholder="&quot;Noto Sans JP&quot;, Arial, sans-serif">
             </div>
             <div class="col">
               <div class="mb-2">
                 <label class="form-label">テキストの色</label>
-                <input type="color" class="form-control form-control-color" id="text-color" name="text-color" value="#000000">
+                <input type="color" class="form-control form-control-color" id="text-color" name="text-color"
+                  value="#000000">
               </div>
               <div>
                 <label class="form-label">円の色</label>
-                <input type="color" class="form-control form-control-color" id="circle-color" name="circle-color" value="#000000">
+                <input type="color" class="form-control form-control-color" id="circle-color" name="circle-color"
+                  value="#000000">
               </div>
             </div>
             <div class="col">
