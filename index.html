@@ -30,7 +30,6 @@
       <p><a href="https://twitter.com/RandomDice_JP/status/1612690830661193728">ランダムダイスJP公式ツイート</a>の画像にテキストを埋め込みます</p>
       <p>(画像はクライアント側で生成されます。サーバーにデータが送信されることはありません)</p>
       <p><span class="r">*</span> は必須項目です</p>
-      <p>好きなダイスは諦めました()自分で丸つけてください</p>
       <form id="form">
         <div class="row">
           <div class="mb-3 col">
@@ -49,6 +48,7 @@
               <select class="form-select w-75" aria-label="クラス種別" id="classtype" name="classtype">
                 <option selected value="クラス">クラス</option>
                 <option value="グランド">グランド</option>
+                <option value="マスター">マスター</option>
                 <option value="チャレンジャー">チャレンジャー</option>
                 <option value="チャンピオン">チャンピオン</option>
               </select>
@@ -202,13 +202,19 @@
           <textarea rows="2" class="form-control" id="deck-pve" placeholder="" name="deck-pve"></textarea>
         </div>
         <div class="mb-3">
+          <label for="favoritedice">好きな伝説ダイス(Ctrl キーで複数選択)</label>
+          <select class="form-select" multiple name="favoritedice" id="favoritedice">
+            <option selected disabled>読み込み中...</option>
+          </select>
+        </div>
+        <div class="mb-3">
           <label for="comment" class="form-label">ひとこと</label>
           <textarea rows="2" class="form-control" id="comment" placeholder="" name="comment"></textarea>
         </div>
         <button type="submit" class="btn btn-primary mb-2" id="generate">作成</button>
         <p id="status" class="text-muted mb-2"></p>
         <canvas id="canvas" width="1800" height="1200" style="display:none;visibility: hidden;"></canvas>
-        <img id="generated">
+        <img id="generated" class="mb-3">
         <img src="image.jpg" id="image" alt="image" style="display:none;visibility: hidden;">
       </form>
     </main>

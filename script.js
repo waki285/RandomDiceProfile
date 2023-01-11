@@ -1,5 +1,17 @@
+const dice = [
+  "沈黙", "養分", "召喚", "成長", "圧縮", "原子", "地震", "地獄", "地雷", "暗殺",
+  "コンボ", "光の剣", "陰陽", "太陽", "台風", "核", "流れ", "バブル", "点火", "ジョーカー",
+  "盾", "砂", "ロイヤル", "月", "吹雪", "過熱", "ix10", "雷雲", "星", "守護者",
+  "充電", "スコープ" , "時間逆行", "転移", "時間", "銃", "重力操作"
+]
+
+const favoritedice = document.getElementById("favoritedice");
+favoritedice.innerHTML = dice.map((d, i) => `<option value="${i}">${d}</option>`).join("");
+
+
 document.getElementById("form").addEventListener("submit", (e) => {
   e.preventDefault();
+  const status = document.getElementById("status");
   const formData = new FormData(e.target);
   const data = Object.fromEntries(formData);
   if (location.search === "?debug") {
@@ -15,6 +27,7 @@ document.getElementById("form").addEventListener("submit", (e) => {
     alert("デッキは2行までにしてください");
     return;
   }
+  status.innerText = "描画中...";
   /** @type {HTMLCanvasElement} */
   const canvas = document.getElementById("canvas");
   const ctx = canvas.getContext("2d");
@@ -51,7 +64,7 @@ document.getElementById("form").addEventListener("submit", (e) => {
 
   fillText(data.nickname, 72, 330, 400);
   fillText(data.crew || "なし", 500, 330, 400);
-  fillText((isE(data.classmax) ? "(最大)":"") + (data.classtype + data.classnum), 68, 463, 400);
+  fillText((isE(data.classmax) ? "(最大)" : "") + (data.classtype + data.classnum), 68, 463, 400);
   fillText(data.crit + "%", 500, 463, 400);
 
   ctx.strokeStyle = "black";
@@ -82,4 +95,21 @@ document.getElementById("form").addEventListener("submit", (e) => {
   data["deck-pvp"] && fillText(data["deck-pvp"], 931, 137, 805, 50);
   data["deck-pve"] && fillText(data["deck-pve"], 931, 330, 805, 50);
   data["comment"] && fillText(data["comment"], 931, 900, 805, 50);
+
+  const selected = [...favoritedice].filter((d) => d.selected).map((d) => d.value);
+
+  const selected2 = selected.map((s) => [s % 10, Math.floor(s / 10)]);
+
+  for (const s of selected2) {
+    arc(987 + s[0] * 75, 530 + s[1] * 66, 30);
+  }
+
+  status.innerText = "描画完了。出力中...";
+  const dat = canvas.toDataURL("image/png");
+  const generated = document.getElementById("generated");
+  generated.src = dat;
+  generated.style.display = "block";
+  generated.width = 600;
+  generated.height = 400;
+  status.innerText = "出力完了";
 });
