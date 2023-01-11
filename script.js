@@ -7,6 +7,14 @@ document.getElementById("form").addEventListener("submit", (e) => {
     document.getElementById("canvas").style.visibility = "visible";
   }
   console.log(data);
+  if (data["deck-pvp"] && data["deck-pvp"].split("\n").length > 2) {
+    alert("デッキは2行までにしてください");
+    return;
+  }
+  if (data["deck-pve"] && data["deck-pve"].split("\n").length > 2) {
+    alert("デッキは2行までにしてください");
+    return;
+  }
   /** @type {HTMLCanvasElement} */
   const canvas = document.getElementById("canvas");
   const ctx = canvas.getContext("2d");
@@ -18,6 +26,12 @@ document.getElementById("form").addEventListener("submit", (e) => {
       fontSize--;
       ctx.font = `${fontSize}px "Noto Sans JP", Arial, sans-serif`;
     } while (ctx.measureText(text).width > maxWidth);
+    if (text.includes("\n")) {
+      const [first, second] = text.split("\n");
+      fillText(first, baseX, baseY - fontSize / 2, maxWidth, fontSize);
+      fillText(second, baseX, baseY + fontSize / 2, maxWidth, fontSize);
+      return;
+    }
     ctx.fillText(text, baseX + (maxWidth - ctx.measureText(text).width) / 2, baseY + fontSize / 2);
   }
   function arc(x, y, r) {
@@ -60,9 +74,12 @@ document.getElementById("form").addEventListener("submit", (e) => {
   isE(data["t-night"]) && ellipse(685, 955, 50, 25);
   isE(data["t-midnight"]) && ellipse(820, 955, 50, 25);
 
-  isE(data["p-beginner"]) && ellipse(150, 1100, 80, 30);
-  isE(data["p-adv"]) && ellipse(400, 1100, 80, 30);
-  isE(data["p-bill"]) && ellipse(600, 1100, 80, 30);
-  isE(data["p-nobill"]) && ellipse(800, 1100, 80, 30);
+  isE(data["p-beginner"]) && ellipse(175, 1115, 80, 30);
+  isE(data["p-adv"]) && ellipse(370, 1115, 80, 30);
+  isE(data["p-bill"]) && ellipse(560, 1115, 80, 30);
+  isE(data["p-nobill"]) && ellipse(775, 1115, 100, 30);
 
+  data["deck-pvp"] && fillText(data["deck-pvp"], 931, 137, 805, 50);
+  data["deck-pve"] && fillText(data["deck-pve"], 931, 330, 805, 50);
+  data["comment"] && fillText(data["comment"], 931, 900, 805, 50);
 });
